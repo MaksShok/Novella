@@ -27,6 +27,11 @@ namespace Novella.Scripts.MiniGameModule
 
             _playerSymbol = _gameStateInfo.PlayerSymbol;
             _npcSymbol = _gameStateInfo.NPCSymbol;
+
+            foreach (GridCellModel model in _gridData.CellModels)
+            {
+                model.SetMoveStrategy(this);
+            }
         }
         
         public void MakePlayerMove(int strIndex, int rowIndex)
@@ -39,7 +44,7 @@ namespace Novella.Scripts.MiniGameModule
 
         private void MakeAIMove()
         {
-            var (strIndex, rowIndex) = _aiAssistant.GetBestMove(_gridData, _npcSymbol, _playerSymbol);
+            var (strIndex, rowIndex) = _aiAssistant.GetBestMove( _npcSymbol, _playerSymbol);
             if (strIndex >= 0 && rowIndex >= 0)
             {
                 TryMakeMove(strIndex, rowIndex, _npcSymbol);

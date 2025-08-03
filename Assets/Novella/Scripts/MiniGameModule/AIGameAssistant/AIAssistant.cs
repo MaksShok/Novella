@@ -8,31 +8,33 @@ namespace Novella.Scripts.MiniGameModule.AIGameAssistant
     public class AIAssistant : IAIAssistant
     {
         private readonly IGameValidator _validator;
-        
-        public AIAssistant(IGameValidator validator)
+        private readonly GridData _gridData;
+
+        public AIAssistant(IGameValidator validator, GridData gridData)
         {
             _validator = validator;
+            _gridData = gridData;
         }
         
-        public (int strIndex, int rowIndex) GetBestMove(GridData gridData, CellValue aiSymbol, CellValue playerSymbol)
+        public (int strIndex, int rowIndex) GetBestMove(CellValue aiSymbol, CellValue playerSymbol)
         {
-            var availableMoves = GetAvailableMoves(gridData);
+            var availableMoves = GetAvailableMoves();
             
             if (!availableMoves.Any())
                 return (-1, -1);
             
-            var bestMove = FindWinningMove(gridData, aiSymbol, availableMoves);
+            var bestMove = FindWinningMove(aiSymbol, availableMoves);
             if (bestMove.HasValue)
                 return bestMove.Value;
             
-            bestMove = FindWinningMove(gridData, playerSymbol, availableMoves);
+            bestMove = FindWinningMove(playerSymbol, availableMoves);
             if (bestMove.HasValue)
                 return bestMove.Value;
             
             return GetRandomMove(availableMoves);
         }
         
-        private List<(int strIndex, int rowIndex)> GetAvailableMoves(GridData gridData)
+        private List<(int strIndex, int rowIndex)> GetAvailableMoves()
         {
             var moves = new List<(int strIndex, int rowIndex)>();
             
@@ -41,7 +43,7 @@ namespace Novella.Scripts.MiniGameModule.AIGameAssistant
                 for (int row = 0; row < GridData.SideGridLength; row++)
                 {
                     int index = str * GridData.SideGridLength + row;
-                    if (gridData.CellModels[index].CellValue == CellValue.None)
+                    if (_gridData.CellModels[index].CellValue == CellValue.None)
                     {
                         moves.Add((str, row));
                     }
@@ -51,12 +53,12 @@ namespace Novella.Scripts.MiniGameModule.AIGameAssistant
             return moves;
         }
         
-        private (int strIndex, int rowIndex)? FindWinningMove(GridData gridData, CellValue symbol, 
+        private (int strIndex, int rowIndex)? FindWinningMove(CellValue symbol, 
             List<(int strIndex, int rowIndex)> availableMoves)
         {
             foreach (var move in availableMoves)
             {
-                var tempGrid = CreateTempGrid(gridData);
+                var tempGrid = CreateTempGrid();
                 tempGrid.TryChangeCellValue(move.strIndex, move.rowIndex, symbol);
                 
                 if (_validator.CheckWin(tempGrid, move.strIndex, move.rowIndex, symbol))
@@ -75,16 +77,16 @@ namespace Novella.Scripts.MiniGameModule.AIGameAssistant
             return availableMoves[index];
         }
         
-        private GridData CreateTempGrid(GridData original)
+        private GridData CreateTempGrid()
         {
             var tempGrid = new GridData();
-            for (int i = 0; i < original.CellModels.Count; i++)
+            for (int i = 0; i < _gridData.CellModels.Count; i++)
             {
-                if (original.CellModels[i].CellValue != CellValue.None)
+                if (_gridData.CellModels[i].CellValue != CellValue.None)
                 {
                     int strIndex = i / GridData.SideGridLength;
                     int rowIndex = i % GridData.SideGridLength;
-                    tempGrid.TryChangeCellValue(strIndex, rowIndex, original.CellModels[i].CellValue);
+                    tempGrid.TryChangeCellValue(strIndex, rowIndex, _gridData.CellModels[i].CellValue);
                 }
             }
             return tempGrid;

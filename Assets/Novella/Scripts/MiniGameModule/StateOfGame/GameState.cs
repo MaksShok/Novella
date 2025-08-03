@@ -11,10 +11,12 @@ namespace Novella.Scripts.MiniGameModule.StateOfGame
         public event Action<CellValue> OnPlayerChanged;
 
         private readonly GameStateInfo _gameStateInfo;
+        private readonly GridData _gridData;
 
-        public GameState(GameStateInfo gameStateInfo)
+        public GameState(GameStateInfo gameStateInfo, GridData gridData)
         {
             _gameStateInfo = gameStateInfo;
+            _gridData = gridData;
         }
 
         public void EndGame(GameResult result)
@@ -26,6 +28,7 @@ namespace Novella.Scripts.MiniGameModule.StateOfGame
 
         public void ResetGame()
         {
+            _gridData.Reset();
             _gameStateInfo.CurrentPlayer = _gameStateInfo.PlayerSymbol;
             _gameStateInfo.IsGameActive = true;
             _gameStateInfo.Result = GameResult.None;

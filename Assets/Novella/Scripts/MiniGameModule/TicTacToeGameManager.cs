@@ -10,7 +10,6 @@ namespace Novella.Scripts.MiniGameModule
     {
         [Inject] private IGameState _gameState;
         [Inject] private IReadOnlyGameStateInfo _gameStateInfo;
-        [Inject] private GridData _gridData;
         
         private CellValue _playerSymbol;
         private CellValue _npcSymbol;
@@ -30,7 +29,6 @@ namespace Novella.Scripts.MiniGameModule
 
         public void ResetGame()
         {
-            _gridData.Reset();
             _gameState.ResetGame();
         }
 

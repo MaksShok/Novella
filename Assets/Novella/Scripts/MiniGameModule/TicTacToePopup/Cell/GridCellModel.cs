@@ -4,8 +4,6 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup.Cell
 {
     public class GridCellModel
     {
-        private readonly MoveStrategy _moveStrategy;
-        
         public event Action<CellValue> CellValueChanged;
         public int StrIndex { get; }
         public int RowIndex { get; }
@@ -22,11 +20,16 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup.Cell
 
         private CellValue _value = CellValue.None;
         
-        public GridCellModel(int strIndex, int rowIndex, MoveStrategy moveStrategy)
+        private MoveStrategy _moveStrategy;
+        
+        public GridCellModel(int strIndex, int rowIndex)
         {
             StrIndex = strIndex;
             RowIndex = rowIndex;
-            
+        }
+
+        public void SetMoveStrategy(MoveStrategy moveStrategy)
+        {
             _moveStrategy = moveStrategy;
         }
 

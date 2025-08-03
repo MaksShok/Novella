@@ -13,12 +13,14 @@ namespace Novella.Scripts.InstallModule
         public override void InstallBindings()
         {
             Container.Bind<GridData>().AsSingle();
+            Container.Bind<MoveStrategy>().AsSingle();
+            
             Container.Bind<IGameValidator>().To<GameValidator>().AsSingle();
             Container.Bind<IAIAssistant>().To<AIAssistant>().AsSingle();
-
-            Container.BindInterfacesAndSelfTo<GameState>().AsSingle()
-                .WithArguments(CellValue.Cross, CellValue.Zero, true);
             
+            // Для GameStateInfo еще надо
+            Container.BindInterfacesAndSelfTo<IGameState>().AsSingle();
+
             Container.Bind<IReadOnlyList<GridCellModel>>()
                 .FromResolveGetter<GridData>(d => d.CellModels);
         }
