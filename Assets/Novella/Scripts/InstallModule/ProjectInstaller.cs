@@ -6,7 +6,7 @@ namespace Novella.Scripts.InstallModule
     {
         public override void InstallBindings()
         {
-            Container.Bind<GamePrefabFactory>().AsSingle();
+            
         }
     }
 }

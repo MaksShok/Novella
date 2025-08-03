@@ -1,4 +1,5 @@
-﻿using Novella.Scripts.MiniGameModule.StateOfGame;
+﻿using Novella.Scripts.InstallModule;
+using Novella.Scripts.MiniGameModule.StateOfGame;
 using Novella.Scripts.MiniGameModule.TicTacToePopup;
 using UnityEngine;
 using Zenject;
@@ -8,18 +9,18 @@ namespace Novella.Scripts.MiniGameModule
 {
     public class TicTacToeGameManager : MonoBehaviour
     {
+        [SerializeField] private TicTacToeGridView _gridViewPrefab;
+        [SerializeField] private RectTransform _root;
+        
         [Inject] private IGameState _gameState;
-        [Inject] private IReadOnlyGameStateInfo _gameStateInfo;
-        
-        private CellValue _playerSymbol;
-        private CellValue _npcSymbol;
-        
+        [Inject] private GamePrefabFactory _gamePrefabFactory;
+
         private void Start()
         {
-            SubscribeToEvents();
+            var gridView = _gamePrefabFactory.InstantiatePrefab<TicTacToeGridView>(_gridViewPrefab, _root);
+            gridView.InitialGamePopupModel(new TicTacToeGridModel());
             
-            _playerSymbol = _gameStateInfo.PlayerSymbol;
-            _npcSymbol = _gameStateInfo.NPCSymbol;
+            SubscribeToEvents();
         }
         
         private void OnDestroy()

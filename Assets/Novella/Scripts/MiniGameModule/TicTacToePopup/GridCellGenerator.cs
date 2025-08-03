@@ -12,7 +12,7 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup
         [SerializeField] private GridLayoutGroup _root;
 
         [Inject]
-        private IReadOnlyList<GridCellModel> _cellModels;
+        private GridData _gridData;
         
         private int _cellsInGrid = GridData.CellsInGrid;
 
@@ -26,7 +26,7 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup
             for (int i = 0; i < _cellsInGrid; i++)
             { 
                 GridCellView gameCellView = Instantiate(_gameCellPrefab, _root.transform);
-                GridCellModel cellModel = _cellModels[i];
+                GridCellModel cellModel = _gridData.CellModels[i];
                 
                 gameCellView.InitialCellModel(cellModel);
             }
