@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zeroSprite: {fileID: 21300000, guid: 62234e97d6d264e498178d8f354046b5, type: 3}
   _crossSprite: {fileID: 21300000, guid: 9faf136f8d8fdec43a042269a523b6da, type: 3}
+  _cellImage: {fileID: 6070376774116022154}
   _button: {fileID: 4348580109994325911}
 --- !u!1 &8610314182313924849
 GameObject:
