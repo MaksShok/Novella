@@ -11,29 +11,22 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup.Cell
         [SerializeField] private Image _cellImage;
         [SerializeField] private Button _button;
 
-        private GridCellModel _cellModel;
+        private GridCellModel _model;
 
         private void Awake()
         {
-            _button.onClick.AddListener(HandleDisplayValue);
+            _button.onClick.AddListener(OnClick);
         }
 
         public void InitialCellModel(GridCellModel cellModel)
         {
-            _cellModel = cellModel;
-            _cellModel.CellValueChanged += DisplayChangedValue;
+            _model = cellModel;
+            _model.CellValueChanged += DisplayChangedValue;
         }
 
-        public void HandleDisplayValue()
+        public void OnClick()
         {
-            if (GameRules.PlayerStepping)
-            {
-                _cellModel.SetCellValue(GameRules.PlayerCellValue);
-            }
-            else
-            {
-                Debug.LogErrorFormat("Не ваш ход!!!");
-            }
+            _model.ProcessPlayerClick();
         }
 
         private void DisplayChangedValue(CellValue cellValue)
@@ -53,12 +46,12 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup.Cell
         {
             _cellImage.sprite = sprite;
             _button.onClick.RemoveAllListeners();
-            _cellModel.CellValueChanged -= DisplayChangedValue;
+            _model.CellValueChanged -= DisplayChangedValue;
         }
 
         private void OnDestroy()
         {
-            _cellModel.CellValueChanged -= DisplayChangedValue;
+            _model.CellValueChanged -= DisplayChangedValue;
         }
     }
 }

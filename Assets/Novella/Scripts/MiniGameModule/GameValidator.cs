@@ -16,14 +16,14 @@ namespace Novella.Scripts.MiniGameModule
         
         public bool CheckDraw(GridData gridData)
         {
-            return gridData.CellModels.All(cell => cell.Value != CellValue.None);
+            return gridData.CellModels.All(cell => cell.CellValue != CellValue.None);
         }
         
         private bool CheckLine(GridData gridData, int strIndex, int rowIndex, CellValue value)
         {
             for (int col = 0; col < GridData.SideGridLength; col++)
             {
-                if (gridData.CellModels[strIndex * GridData.SideGridLength + col].Value != value)
+                if (gridData.CellModels[strIndex * GridData.SideGridLength + col].CellValue != value)
                     return false;
             }
             return true;
@@ -33,7 +33,7 @@ namespace Novella.Scripts.MiniGameModule
         {
             for (int row = 0; row < GridData.SideGridLength; row++)
             {
-                if (gridData.CellModels[row * GridData.SideGridLength + rowIndex].Value != value)
+                if (gridData.CellModels[row * GridData.SideGridLength + rowIndex].CellValue != value)
                     return false;
             }
             return true;
@@ -45,7 +45,7 @@ namespace Novella.Scripts.MiniGameModule
             {
                 for (int i = 0; i < GridData.SideGridLength; i++)
                 {
-                    if (gridData.CellModels[i * GridData.SideGridLength + i].Value != value)
+                    if (gridData.CellModels[i * GridData.SideGridLength + i].CellValue != value)
                         return false;
                 }
                 return true;
@@ -55,7 +55,7 @@ namespace Novella.Scripts.MiniGameModule
             {
                 for (int i = 0; i < GridData.SideGridLength; i++)
                 {
-                    if (gridData.CellModels[i * GridData.SideGridLength + (GridData.SideGridLength - 1 - i)].Value != value)
+                    if (gridData.CellModels[i * GridData.SideGridLength + (GridData.SideGridLength - 1 - i)].CellValue != value)
                         return false;
                 }
                 return true;

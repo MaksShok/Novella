@@ -1,5 +1,4 @@
-﻿using System;
-using Novella.Scripts.MiniGameModule.AIGameAssistant;
+﻿using Novella.Scripts.MiniGameModule.AIGameAssistant;
 using Novella.Scripts.MiniGameModule.StateOfGame;
 using Novella.Scripts.MiniGameModule.TicTacToePopup;
 using Novella.Scripts.MiniGameModule.TicTacToePopup.Cell;

@@ -8,10 +8,7 @@ namespace Novella.Scripts.MiniGameModule.AIGameAssistant
     public class AIAssistant : IAIAssistant
     {
         private readonly IGameValidator _validator;
-
-        private List<GridCellModel> _availablePositions;
         
-
         public AIAssistant(IGameValidator validator)
         {
             _validator = validator;

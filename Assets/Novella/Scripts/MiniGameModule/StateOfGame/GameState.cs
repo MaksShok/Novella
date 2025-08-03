@@ -6,78 +6,39 @@ namespace Novella.Scripts.MiniGameModule.StateOfGame
 {
     public class GameState : IGameState
     {
-        public event Action<CellValue> OnPlayerChanged;
         public event Action<GameResult> OnGameEnded;
         public event Action<int, int, CellValue> OnCellChanged;
-        
-        public CellValue CurrentPlayer { get; private set; }
-        public bool IsGameActive { get; private set; }
-        public GameResult Result { get; private set; }
-        
-        private readonly GridData _gridData;
-        private readonly IGameValidator _validator;
-        private readonly CellValue _playerSymbol;
-        private readonly CellValue _npcSymbol;
-        
-        public GameState(GridData gridData, IGameValidator validator, 
-            CellValue playerSymbol, CellValue npcSymbol, bool playerStartsFirst = true)
+        public event Action<CellValue> OnPlayerChanged;
+
+        private readonly GameStateInfo _gameStateInfo;
+
+        public GameState(GameStateInfo gameStateInfo)
         {
-            _gridData = gridData;
-            _validator = validator;
-            _playerSymbol = playerSymbol;
-            _npcSymbol = npcSymbol;
-            
-            CurrentPlayer = playerStartsFirst ? _playerSymbol : _npcSymbol;
-            IsGameActive = true;
-            Result = GameResult.None;
+            _gameStateInfo = gameStateInfo;
         }
-        
-        public bool TryMakeMove(int strIndex, int rowIndex, CellValue value)
+
+        public void EndGame(GameResult result)
         {
-            if (!IsGameActive || value != CurrentPlayer)
-                return false;
-                
-            if (!_gridData.TryChangeCellValue(strIndex, rowIndex, value))
-                return false;
-                
-            OnCellChanged?.Invoke(strIndex, rowIndex, value);
-            
-            if (_validator.CheckWin(_gridData, strIndex, rowIndex, value))
-            {
-                EndGame(value == _playerSymbol ? GameResult.PlayerWin : GameResult.NpcWin);
-                return true;
-            }
-            
-            if (_validator.CheckDraw(_gridData))
-            {
-                EndGame(GameResult.Draw);
-                return true;
-            }
-            
-            SwitchPlayer();
-            return true;
+            _gameStateInfo.IsGameActive = false;
+            _gameStateInfo.Result = result;
+            OnGameEnded?.Invoke(result);
         }
-        
+
         public void ResetGame()
         {
-            _gridData.Reset();
-            CurrentPlayer = _playerSymbol;
-            IsGameActive = true;
-            Result = GameResult.None;
-            OnPlayerChanged?.Invoke(CurrentPlayer);
+            _gameStateInfo.CurrentPlayer = _gameStateInfo.PlayerSymbol;
+            _gameStateInfo.IsGameActive = true;
+            _gameStateInfo.Result = GameResult.None;
         }
-        
-        private void SwitchPlayer()
+
+        public void CellChangedInvokator(int arg1, int arg2, CellValue arg3)
         {
-            CurrentPlayer = CurrentPlayer == _playerSymbol ? _npcSymbol : _playerSymbol;
-            OnPlayerChanged?.Invoke(CurrentPlayer);
+            OnCellChanged?.Invoke(arg1, arg2, arg3);
         }
-        
-        private void EndGame(GameResult result)
+
+        public void PlayerChangedInvokator(CellValue cellValue)
         {
-            IsGameActive = false;
-            Result = result;
-            OnGameEnded?.Invoke(result);
+            OnPlayerChanged?.Invoke(cellValue);
         }
     }
 } 
