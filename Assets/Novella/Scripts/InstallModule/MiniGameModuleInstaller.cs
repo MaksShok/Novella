@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Novella.Scripts.MiniGameModule;
 using Novella.Scripts.MiniGameModule.AIGameAssistant;
 using Novella.Scripts.MiniGameModule.StateOfGame;
@@ -17,6 +18,9 @@ namespace Novella.Scripts.InstallModule
 
             Container.BindInterfacesAndSelfTo<GameState>().AsSingle()
                 .WithArguments(CellValue.Cross, CellValue.Zero, true);
+            
+            Container.Bind<IReadOnlyList<GridCellModel>>()
+                .FromResolveGetter<GridData>(d => d.CellModels);
         }
     }
 } 

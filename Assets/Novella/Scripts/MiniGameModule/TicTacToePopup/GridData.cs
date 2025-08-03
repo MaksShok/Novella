@@ -26,7 +26,7 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup
 
         public bool TryChangeCellValue(int strIndex, int rowIndex, CellValue newCellValue)
         {
-            int index = strIndex + rowIndex + (SideGridLength - 1) * strIndex;
+            int index = strIndex * SideGridLength + rowIndex;
             CellValue cellValue = _cellModels[index].Value;
             
             if (cellValue == CellValue.None && newCellValue != CellValue.None)
@@ -37,6 +37,14 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup
             else
             {
                 return false;
+            }
+        }
+        
+        public void Reset()
+        {
+            for (int i = 0; i < _cellModels.Length; i++)
+            {
+                _cellModels[i].SetCellValue(CellValue.None);
             }
         }
     }

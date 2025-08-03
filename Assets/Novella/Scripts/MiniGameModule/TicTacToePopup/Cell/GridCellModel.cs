@@ -23,8 +23,7 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup.Cell
             if (_value == CellValue.None && value != CellValue.None)
             { 
                 _value = value;
-                CellValueChanged?.Invoke(_value); // перериросываем view
-                GameRules.ChangeStepStatus();  
+                CellValueChanged?.Invoke(_value);
             }
         }
     }
