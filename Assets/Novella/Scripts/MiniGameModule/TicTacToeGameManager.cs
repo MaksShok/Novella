@@ -10,8 +10,8 @@ namespace Novella.Scripts.MiniGameModule
     public class TicTacToeGameManager : MonoBehaviour
     {
         [SerializeField] private TicTacToeGridView _gridViewPrefab;
-        [SerializeField] private RectTransform _root;
         
+        [Inject] private RectTransform _root;
         [Inject] private IGameState _gameState;
         [Inject] private GamePrefabFactory _gamePrefabFactory;
 
