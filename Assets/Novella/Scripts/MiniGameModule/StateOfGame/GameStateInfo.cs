@@ -1,8 +1,6 @@
-﻿using Novella.Scripts.MiniGameModule.StateOfGame;
-using Novella.Scripts.MiniGameModule.TicTacToePopup.Cell;
-using UnityEngine;
+﻿using Novella.Scripts.MiniGameModule.TicTacToePopup.Cell;
 
-namespace Novella.Scripts.MiniGameModule
+namespace Novella.Scripts.MiniGameModule.StateOfGame
 {
     public interface IReadOnlyGameStateInfo
     {

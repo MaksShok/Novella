@@ -1,4 +1,5 @@
-﻿using Novella.Scripts.MiniGameModule.AIGameAssistant;
+﻿using System.Threading.Tasks;
+using Novella.Scripts.MiniGameModule.AIGameAssistant;
 using Novella.Scripts.MiniGameModule.StateOfGame;
 using Novella.Scripts.MiniGameModule.TicTacToePopup;
 using Novella.Scripts.MiniGameModule.TicTacToePopup.Cell;
@@ -42,11 +43,12 @@ namespace Novella.Scripts.MiniGameModule
             }
         }
 
-        private void MakeAIMove()
+        private async void MakeAIMove()
         {
             var (strIndex, rowIndex) = _aiAssistant.GetBestMove( _npcSymbol, _playerSymbol);
             if (strIndex >= 0 && rowIndex >= 0)
             {
+                await Task.Delay(800);
                 TryMakeMove(strIndex, rowIndex, _npcSymbol);
             }
         }

@@ -15,6 +15,7 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup.Cell
 
         private void Awake()
         {
+            ApplyCellImageTransparency(0);
             _button.onClick.AddListener(OnClick);
         }
 
@@ -34,19 +35,29 @@ namespace Novella.Scripts.MiniGameModule.TicTacToePopup.Cell
             if (cellValue == CellValue.Cross)
             {
                 ChangeCellState(_crossSprite);
-                
             }
             else if (cellValue == CellValue.Zero)
             {
                 ChangeCellState(_zeroSprite);
+            }
+            else
+            {
+                _cellImage.sprite = default;
+                ApplyCellImageTransparency(0);
             }
         }
 
         private void ChangeCellState(Sprite sprite)
         {
             _cellImage.sprite = sprite;
-            _button.onClick.RemoveAllListeners();
-            _model.CellValueChanged -= DisplayChangedValue;
+            ApplyCellImageTransparency(1);
+        }
+
+        private void ApplyCellImageTransparency(float a)
+        {
+            Color color = _cellImage.color;
+            color.a = a;
+            _cellImage.color = color;
         }
 
         private void OnDestroy()
