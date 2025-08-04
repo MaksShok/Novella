@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Novella.Scripts.QuestModule.Task;
 using UnityEngine;
 
 namespace Novella.Scripts.QuestModule
 {
-    public class Quest
+    public class CurrentTaskProvider
     {
         private readonly Dictionary<TaskTypeEnum, BooleanTask> _taskConditions;
 
-        public Quest(List<TaskInfo> tasks)
+        public CurrentTaskProvider(List<TaskInfo> tasks)
         {
             _taskConditions = new Dictionary<TaskTypeEnum, BooleanTask>();
 
@@ -27,7 +28,7 @@ namespace Novella.Scripts.QuestModule
                     return false;
                 }
             }
-
+            
             return true;
         }
 
