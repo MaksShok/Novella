@@ -40,27 +40,36 @@ namespace Novella.Scripts.MiniGameModule
         
         private bool CheckDiagonal(GridData gridData, int strIndex, int rowIndex, CellValue value)
         {
+            bool mainDiagonalWin = false;
+            bool antiDiagonalWin = false;
+
             if (strIndex == rowIndex)
             {
+                mainDiagonalWin = true;
                 for (int i = 0; i < GridData.SideGridLength; i++)
                 {
                     if (gridData.CellModels[i * GridData.SideGridLength + i].CellValue != value)
-                        return false;
+                    {
+                        mainDiagonalWin = false;
+                        break;
+                    }
                 }
-                return true;
             }
-            
+
             if (strIndex + rowIndex == GridData.SideGridLength - 1)
             {
+                antiDiagonalWin = true;
                 for (int i = 0; i < GridData.SideGridLength; i++)
                 {
                     if (gridData.CellModels[i * GridData.SideGridLength + (GridData.SideGridLength - 1 - i)].CellValue != value)
-                        return false;
+                    {
+                        antiDiagonalWin = false;
+                        break;
+                    }
                 }
-                return true;
             }
-            
-            return false;
+
+            return mainDiagonalWin || antiDiagonalWin;
         }
     }
 } 
