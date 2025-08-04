@@ -7,10 +7,11 @@ using Zenject;
 
 namespace Novella.Scripts.InstallModule
 {
-    public class MiniGameModuleInstaller : MonoInstaller
+    public class MiniGameModuleInstaller : Installer<MiniGameModuleInstaller>
     {
         public override void InstallBindings()
         {
+            Container.Bind<TicTacToeGameBootstrapper>().AsSingle();
             Container.Bind<GridData>().AsSingle();
             Container.Bind<MoveStrategy>().AsSingle().NonLazy();
             

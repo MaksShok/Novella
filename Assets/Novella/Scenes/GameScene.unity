@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 665591217}
   - component: {fileID: 665591218}
   m_Layer: 0
-  m_Name: TicTacToeGameManager
+  m_Name: TestGameProcess
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,11 +256,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 665591215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f45827bcf7a44bda46ffc97a0efb34f, type: 3}
+  m_Script: {fileID: 11500000, guid: d7561d9016e84b8cb0ceb8273bc413cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridViewPrefab: {fileID: 7856211880535836025, guid: 718dd8b515340464d877c1e3d344ecd7, type: 3}
-  _root: {fileID: 0}
 --- !u!1 &1065273221
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +270,6 @@ GameObject:
   - component: {fileID: 1065273224}
   - component: {fileID: 1065273223}
   - component: {fileID: 1065273222}
-  - component: {fileID: 1065273225}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -293,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiRootPrefab: {fileID: 1393716897577937601, guid: 65f56d2f41ae10e4c9c0d04664335b58, type: 3}
+  _levelConfig: {fileID: 11400000, guid: 2e895f9ad30d14b49b498eaf18a50cd1, type: 2}
 --- !u!114 &1065273223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +306,6 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1065273222}
-  - {fileID: 1065273225}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -341,18 +338,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1065273225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065273221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 832fd95ce6b493f42bebb4c51606791a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1378937101
 GameObject:
   m_ObjectHideFlags: 0

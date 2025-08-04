@@ -7,7 +7,7 @@ namespace Novella.Scripts.Configs
     [CreateAssetMenu(fileName = "UIConfig", menuName = "ScriptableObjects/UIConfig")]
     public class UIConfig : ScriptableObject
     {
-        public TicTacToeGridView _gridViewPrefab;
-        public GameSymbolSelector _symbolSelectorPrefab;
+        public TicTacToeGridView GridViewPrefab;
+        public GameSymbolSelector SymbolSelectorPrefab;
     }
 }
