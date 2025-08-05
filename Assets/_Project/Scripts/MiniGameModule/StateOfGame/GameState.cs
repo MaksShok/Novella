@@ -6,12 +6,14 @@ namespace _Project.Scripts.MiniGameModule.StateOfGame
 {
     public class GameState : IGameState
     {
+        private readonly GameStateInfo _gameStateInfo;
+        private readonly GridData _gridData;
+        
         public event Action<GameResult> OnGameEnded;
         public event Action<int, int, CellValue> OnCellChanged;
         public event Action<CellValue> OnPlayerChanged;
-
-        private readonly GameStateInfo _gameStateInfo;
-        private readonly GridData _gridData;
+        
+        public IReadOnlyGameStateInfo GameStateInfo => _gameStateInfo;
 
         public GameState(GameStateInfo gameStateInfo, GridData gridData)
         {
@@ -29,7 +31,7 @@ namespace _Project.Scripts.MiniGameModule.StateOfGame
         public void ResetGame()
         {
             _gridData.Reset();
-            _gameStateInfo.CurrentPlayer = _gameStateInfo.PlayerSymbol;
+            _gameStateInfo.CurrentPlayer = _gameStateInfo.FirstPlayer;
             _gameStateInfo.IsGameActive = true;
             _gameStateInfo.Result = GameResult.None;
         }

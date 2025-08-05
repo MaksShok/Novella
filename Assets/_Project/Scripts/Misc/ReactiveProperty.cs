@@ -20,6 +20,11 @@ namespace _Project.Scripts.Misc
         }
 
         public event Action<TValue> OnValueChange;
+        
+        public ReactiveProperty(TValue startValue = default)
+        {
+            _value = startValue;
+        }
     }
 
     public interface IReadOnlyReactiveProperty<TValue>

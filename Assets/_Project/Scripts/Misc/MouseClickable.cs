@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using _Project.Scripts.InteractableEnvironmentModule.InteractableActions;
+using UnityEngine;
 
 namespace _Project.Scripts.Misc
 {
@@ -9,7 +9,7 @@ namespace _Project.Scripts.Misc
         private Collider2D _targetCollider;
         
         [SerializeField] 
-        private UnityEvent onClick;
+        private BaseInteractableAction _unlockChest;
 
         private Camera sceneCamera;
 
@@ -35,7 +35,7 @@ namespace _Project.Scripts.Misc
 
             if (hit.collider != null && hit.collider == _targetCollider)
             {
-                onClick?.Invoke();
+                _unlockChest.Action();
             }
         }
     }

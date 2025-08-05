@@ -9,6 +9,8 @@ namespace _Project.Scripts.MiniGameModule.StateOfGame
         event Action<int, int, CellValue> OnCellChanged;
         event Action<CellValue> OnPlayerChanged;
         
+        IReadOnlyGameStateInfo GameStateInfo { get; }
+        
         void CellChangedInvokator(int arg1, int arg2, CellValue arg3);
         void PlayerChangedInvokator(CellValue cellValue);
         

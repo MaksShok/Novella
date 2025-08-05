@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Quest_Item
   <Prefab>k__BackingField: {fileID: 3887514536559060177, guid: 9cc6f5a9fe96aa34588026d4a4b99536, type: 3}
-  <IconSprite>k__BackingField: {fileID: 0}
+  <IconSprite>k__BackingField: {fileID: 21300000, guid: bfd5056cf57fadd45bf3f052317ebf2f, type: 3}

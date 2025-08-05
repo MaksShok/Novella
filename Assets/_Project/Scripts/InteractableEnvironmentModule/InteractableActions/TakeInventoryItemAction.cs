@@ -9,20 +9,20 @@ namespace _Project.Scripts.InteractableEnvironmentModule.InteractableActions
         [Inject] 
         private InventoryModel _inventoryModel;
 
-        private InventoryItem _item;
+        public InventoryItem Item { get; private set; }
 
         public void Init(InventoryItem inventoryItem)
         {
-            _item = inventoryItem;
+            Item = inventoryItem;
         }
         
         public override void Action()
         {
-            if (_item != null)
-                _inventoryModel.AddItem(_item);
+            if (Item != null)
+                _inventoryModel.AddItem(Item);
             else
             {
-                Debug.Log("Inventory Item is null");
+                Debug.Log($"Inventory Item is null");
             }
         }
     }

@@ -13,6 +13,7 @@ namespace _Project.Scripts.MiniGameModule
         private readonly IGameState _gameState;
         private readonly GamePrefabFactory _gamePrefabFactory;
         private readonly LevelConfig _config;
+        private readonly TicTacToeGridModel _gridModel;
 
         public TicTacToeGameBootstrapper(UIRoot uiRoot, IGameState gameState, 
             GamePrefabFactory prefabFactory, LevelConfig config)
@@ -21,6 +22,8 @@ namespace _Project.Scripts.MiniGameModule
             _gameState = gameState;
             _gamePrefabFactory = prefabFactory;
             _config = config;
+
+            _gridModel = new TicTacToeGridModel(_gameState, gameState.GameStateInfo);
         }
         
         public void StartGame()
@@ -28,7 +31,7 @@ namespace _Project.Scripts.MiniGameModule
             var gridViewPrefab = _config.UIConfig.GridViewPrefab;
             var gridView = _gamePrefabFactory.InstantiatePrefab<TicTacToeGridView>(gridViewPrefab, _uiRoot.PopupsRoot);
             
-            gridView.InitialGamePopupModel(new TicTacToeGridModel());
+            gridView.InitialGridModel(_gridModel);
             
             SubscribeToEvents();
         }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using _Project.Scripts.ConditionModule;
 using _Project.Scripts.ConditionModule.Task;
 using _Project.Scripts.InventoryModule;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Zenject;
 
@@ -44,7 +41,9 @@ namespace _Project.Scripts.InteractableEnvironmentModule.InteractableActions
                     if (obj.TryGetComponent(out TakeInventoryItemAction action))
                     {
                         action.Init(item);
-                        action.Action();
+                        //action.Action();
+                        _inventoryModel.RemoveItem(_requiredItem);
+                        _inventoryModel.AddItem(item);
                     }
                     else
                     {

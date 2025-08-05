@@ -1,5 +1,7 @@
 ﻿using _Project.Scripts.ConditionModule.Task;
 using _Project.Scripts.Configs;
+using _Project.Scripts.InstallModule;
+using _Project.Scripts.InventoryModule;
 using _Project.Scripts.MiniGameModule;
 using _Project.Scripts.MiniGameModule.StateOfGame;
 using UnityEngine;
@@ -9,38 +11,56 @@ namespace _Project.Scripts
 {
     public class TestGameProcessManager : MonoBehaviour
     {
-        private TicTacToeGameBootstrapper _ticTacToeBootstrapper;
-        private LevelConfig _levelConfig;
-        private IGameState _ticTacToGameState;
+        [SerializeField] private InventoryItem _key;
+        
+        [Inject] private TicTacToeGameBootstrapper _ticTacToeBootstrapper;
+        [Inject] private LevelConfig _levelConfig;
+        [Inject] private IGameState _ticTacToGameState;
 
-        private BooleanTask _task;
+        [Inject] private CurrentTaskProvider _currentTaskProvider;
+        
+        [Inject] private InventoryModel _inventoryModel;
+        [Inject] private UIRoot _uiRoot;
+        [Inject] private GamePrefabFactory _gamePrefabFactory;
 
-        [Inject]
-        private void Constructor(TicTacToeGameBootstrapper ticTacToeBootstrapper, LevelConfig levelConfig,
-            IGameState ticTacToGameState)
-        {
-            _ticTacToeBootstrapper = ticTacToeBootstrapper;
-            _levelConfig = levelConfig;
-            _ticTacToGameState = ticTacToGameState;
-        }
+        private BooleanTask _ticTacToeTask;
 
         private void Start()
         {
-            _task = new BooleanTask(_levelConfig.TasksInfo[0]);
+            //InventoryTestStart();
+            TicTacToeGameStart();
+        }
+
+        private void InventoryTestStart()
+        {
+            _inventoryModel.AddItem(_key); //Test
             
-            _ticTacToGameState.OnGameEnded += CompleteTask;
-            _task.Status.OnValueChange += OnQuestComplete;
+            var inventoryPrefab = _levelConfig.UIConfig.InventoryView;
+            
+            var inventory = _gamePrefabFactory
+                .InstantiatePrefab<InventoryView>(inventoryPrefab, _uiRoot.HUDRoot);
+            
+            inventory.InitializeInventoryModel(_inventoryModel);
+        }
+
+        private void TicTacToeGameStart()
+        {
+            _ticTacToeTask = new BooleanTask(_levelConfig.TasksInfo[0]);
+            
+            _ticTacToGameState.OnGameEnded += CompleteTicTacToeTask;
+            _ticTacToeTask.Status.OnValueChange += OnTicTacToeTaskComplete;
             
             _ticTacToeBootstrapper.StartGame();
         }
+            
 
-        private void CompleteTask(GameResult gameResult)
+        private void CompleteTicTacToeTask(GameResult gameResult)
         {
             if (gameResult == GameResult.PlayerWin)
-                _task.SetTaskComplete();
+                _ticTacToeTask.SetTaskComplete();
         }
 
-        private void OnQuestComplete(bool status)
+        private void OnTicTacToeTaskComplete(bool status)
         {
             if (status)
                 Debug.Log("Quest Completed !!!");
