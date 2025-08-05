@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Configs;
+using _Project.Scripts.InventoryModule;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,8 @@ namespace _Project.Scripts.InstallModule
 
             Container.Bind<LevelConfig>().FromInstance(_levelConfig);
             Container.Bind<GamePrefabFactory>().AsSingle();
+
+            Container.Bind<InventoryModel>().AsSingle().WithArguments(4);
             
             MiniGameModuleInstaller.Install(Container);
         }

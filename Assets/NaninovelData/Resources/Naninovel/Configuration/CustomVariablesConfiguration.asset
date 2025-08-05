@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484eca5cb42e477590cb567d2d8d013b, type: 3}
-  m_Name: QuestItem
+  m_Script: {fileID: 11500000, guid: 050d909da8f293c4cac3351071715b4d, type: 3}
+  m_Name: CustomVariablesConfiguration
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Quest_Item
-  <Prefab>k__BackingField: {fileID: 3887514536559060177, guid: 9cc6f5a9fe96aa34588026d4a4b99536, type: 3}
-  <IconSprite>k__BackingField: {fileID: 0}
+  PredefinedVariables: []

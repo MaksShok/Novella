@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484eca5cb42e477590cb567d2d8d013b, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: 
-  Id: 
-  IconSprite: {fileID: 0}
-  Object: {fileID: 0}
+  <Id>k__BackingField: Key
+  <Prefab>k__BackingField: {fileID: 5481447154321227635, guid: f1bc9b0e5d7899f4aa2811d948f04c13, type: 3}
+  <IconSprite>k__BackingField: {fileID: 0}

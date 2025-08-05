@@ -144,3 +144,24 @@ MonoBehaviour:
     - name: ScriptNavigatorUI
       pathPrefix: UI
       guid: 735d6aa767879aa469134858c5b2f0a7
+  - Id: Backgrounds/6a46ef89-ea00-406e-b078-f6c3ce1225d3
+    Resources:
+    - name: BedroomBack
+      pathPrefix: Backgrounds/MainBackground
+      guid: 564de79b6bc77004d83661360833a2c9
+    - name: GarajeBack
+      pathPrefix: Backgrounds/MainBackground
+      guid: 9e82edc4e9a5c81408740f2766cbbd35
+    - name: StreetBack
+      pathPrefix: Backgrounds/MainBackground
+      guid: e3f3f0414ed542e4084e4a7fa73d71f4
+  - Id: Characters/865c2406-f1a5-4ee8-8094-bc86f13d7d9d
+    Resources:
+    - name: Male
+      pathPrefix: Characters
+      guid: 85bdccf01e6bc9946a6023302b0710c4
+  - Id: Scripts
+    Resources:
+    - name: Introduction
+      pathPrefix: Scripts
+      guid: 6c5c9ef9533b8e74fa4b8cb7ddce3edd

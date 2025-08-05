@@ -3,6 +3,6 @@
     public enum TaskTypeEnum
     {
         None = 0,
-        CompleteMiniGame = 1,
+        GetChestKey = 1,
     }
 }

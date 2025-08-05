@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridViewPrefab: {fileID: 7856211880535836025, guid: 718dd8b515340464d877c1e3d344ecd7, type: 3}
   SymbolSelectorPrefab: {fileID: 8517320463804352691, guid: 7d68fe564ada641448d92e37cd81b6c6, type: 3}
+  InventoryView: {fileID: 6694777206249287082, guid: 7e93bfde611461d41baba97d0910c757, type: 3}

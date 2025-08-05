@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.MiniGameModule.SybmolSelectPopup;
+﻿using _Project.Scripts.InventoryModule;
+using _Project.Scripts.MiniGameModule.SybmolSelectPopup;
 using _Project.Scripts.MiniGameModule.TicTacToePopup;
 using UnityEngine;
 
@@ -9,5 +10,6 @@ namespace _Project.Scripts.Configs
     {
         public TicTacToeGridView GridViewPrefab;
         public GameSymbolSelector SymbolSelectorPrefab;
+        public InventoryView InventoryView;
     }
 }
