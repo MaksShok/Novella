@@ -1,7 +1,7 @@
-﻿using _Project.Scripts.Configs;
+﻿using _Project.Scripts.ConditionModule.Task;
+using _Project.Scripts.Configs;
 using _Project.Scripts.MiniGameModule;
 using _Project.Scripts.MiniGameModule.StateOfGame;
-using _Project.Scripts.QuestModule.Task;
 using UnityEngine;
 using Zenject;
 

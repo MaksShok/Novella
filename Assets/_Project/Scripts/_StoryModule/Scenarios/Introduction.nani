@@ -1,0 +1,9 @@
+@back StreetBack
+@char Male
+Male: Привет! Мне нужна твоя помощь. Принеси мне предмет из сейфа.
+Male: Я пока подожду тебя здесь. [char Male scale:0.5 pos:80,0]
+
+@hide Male
+@wait 2
+@char Male
+@stop
