@@ -1,6 +1,6 @@
 ﻿using _Project.Scripts.Misc;
 
-namespace _Project.Scripts.QuestModule.Task
+namespace _Project.Scripts.ConditionModule.Task
 {
     public class BooleanTask : ICondition
     {

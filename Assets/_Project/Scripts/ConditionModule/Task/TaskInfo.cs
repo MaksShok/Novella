@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _Project.Scripts.QuestModule.Task
+namespace _Project.Scripts.ConditionModule.Task
 {
     [Serializable]
     public class TaskInfo

@@ -8,7 +8,7 @@ namespace _Project.Scripts.InventoryModule
     {
         public readonly int Capacity;
         
-        public event Action OnChangeInventoryItems;
+        public event Action OnChangeInventory;
 
         public IReadOnlyList<InventoryItem> Items => _items;
         private List<InventoryItem> _items;
@@ -25,7 +25,7 @@ namespace _Project.Scripts.InventoryModule
                 return false;
             
             _items.Add(item);
-            OnChangeInventoryItems?.Invoke();
+            OnChangeInventory?.Invoke();
             
             return true;
         }
@@ -38,7 +38,7 @@ namespace _Project.Scripts.InventoryModule
                 return;
             
             _items.Remove(removedItem);
-            OnChangeInventoryItems?.Invoke();
+            OnChangeInventory?.Invoke();
         }
     }
 }

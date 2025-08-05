@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using _Project.Scripts.QuestModule.Task;
+using _Project.Scripts.ConditionModule.Task;
 using UnityEngine;
 
 namespace _Project.Scripts.Configs

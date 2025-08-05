@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +26,7 @@ namespace _Project.Scripts.InventoryModule
             
             UpdateItemViews();
 
-            _model.OnChangeInventoryItems += UpdateItemViews;
+            _model.OnChangeInventory += UpdateItemViews;
         }
 
         private void UpdateItemViews()
@@ -51,7 +52,7 @@ namespace _Project.Scripts.InventoryModule
 
         private void OnDestroy()
         {
-            _model.OnChangeInventoryItems -= UpdateItemViews;
+            _model.OnChangeInventory -= UpdateItemViews;
         }
     }
 }

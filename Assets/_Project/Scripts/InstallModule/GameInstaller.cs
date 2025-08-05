@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Configs;
+﻿using _Project.Scripts.ConditionModule.Task;
+using _Project.Scripts.Configs;
 using _Project.Scripts.InventoryModule;
 using UnityEngine;
 using Zenject;
@@ -14,7 +15,9 @@ namespace _Project.Scripts.InstallModule
         {
             BindUIRoot();
 
-            Container.Bind<LevelConfig>().FromInstance(_levelConfig);
+            Container.Bind<LevelConfig>().FromInstance(_levelConfig).AsCached();
+            
+            Container.Bind<CurrentTaskProvider>().AsCached();
             Container.Bind<GamePrefabFactory>().AsSingle();
 
             Container.Bind<InventoryModel>().AsSingle().WithArguments(4);

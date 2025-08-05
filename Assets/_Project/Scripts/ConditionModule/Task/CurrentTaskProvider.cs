@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using _Project.Scripts.QuestModule.Task;
+using _Project.Scripts.Configs;
 using UnityEngine;
 
-namespace _Project.Scripts.QuestModule
+namespace _Project.Scripts.ConditionModule.Task
 {
     public class CurrentTaskProvider
     {
         private readonly Dictionary<TaskTypeEnum, BooleanTask> _taskConditions;
 
-        public CurrentTaskProvider(List<TaskInfo> tasks)
+        public CurrentTaskProvider(LevelConfig levelConfig)
         {
             _taskConditions = new Dictionary<TaskTypeEnum, BooleanTask>();
 
-            foreach (var taskInfo in tasks)
+            foreach (var taskInfo in levelConfig.TasksInfo)
             {
                 _taskConditions.Add(taskInfo.Enum, new BooleanTask(taskInfo));
             }
